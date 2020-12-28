@@ -21,10 +21,11 @@ $colorHoverActive:#b3d7ff;
 .custom-checkbox+label {
   display: inline-flex;
   align-items: center;
-  margin-left: 10px;
-  padding: 5px 0;
+  width: 100%;
+  padding: 5px 10px;
   color: #25213B;
   user-select: none;
+  transition: 0.2s;
 }
 
 .custom-checkbox+label::before {
@@ -52,11 +53,17 @@ $colorHoverActive:#b3d7ff;
 .custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
   border-color: $colorHoverActive;
 }
+
+.custom-checkbox+label:hover {
+background-color: #e9ecef;
+}
+
 /* стили для активного состояния чекбокса (при нажатии на него) */
 .custom-checkbox:not(:disabled):active+label::before {
   background-color:$colorHoverActive;
   border-color: $colorHoverActive;
 }
+
 /* стили для чекбокса, находящегося в фокусе */
 .custom-checkbox:focus+label::before {
   box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
