@@ -5,24 +5,24 @@ const animatedComponents = makeAnimated();
 
 import './EnumFilter.scss';
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: 'teacher', label: 'Teacher' },
+  { value: 'doctor', label: 'Doctor' },
+  { value: 'engineer', label: 'Engineer' },
+  { value: 'poet', label: 'Poet' },
+  { value: 'explorer', label: 'Explorer' },
 ];
-
-// const className = 'react-select-container';
 
 const EnumFilter = () => {
   return (
     <div className="enum-filter">
-      <p className="enum-filter__title">Enum filter</p>
+      <p className="enum-filter__title">Profession filter</p>
       <div className="enum-filter__input">
         <Select
           className="enum-filter__select"
           classNamePrefix="enum-select"
           closeMenuOnSelect={false}
           components={animatedComponents}
-          defaultValue={[options[1], options[2]]}
+          defaultValue={[...options]}
           isMulti
           options={options}
         />

@@ -1,12 +1,20 @@
-$bgColor: coral;
-$colorTransform: rgba(8, 223, 238, 0.61);
+$text-color: #25213B;
+$colorTransform: #8b83ba63;
 
 .header {
   display: flex;
   justify-content: space-around;
   max-width: 1200px;
-  margin: 0 auto;
-  background-color: $bgColor;
+  margin: 12px auto;
+  background: #FFFFFF;
+  border: 1px solid #C6C2DE;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  .header__title {
+    color: $text-color;;
+    font-weight: 800;
+  }
 }
 
 .header__link {
@@ -17,6 +25,7 @@ $colorTransform: rgba(8, 223, 238, 0.61);
   color: #000;
     span{
       font-weight: 100;
+      color: $text-color;
       transition: all .5s;
     }
     span:nth-child(2){
@@ -65,14 +74,15 @@ $colorTransform: rgba(8, 223, 238, 0.61);
     }
     &.hover-shadow{
       &:hover{
+      // text-shadow: 1px 1px 0px $colorTransform, 2px 2px 0px $colorTransform, 3px 3px 0px $colorTransform;
       text-shadow: 1px 1px 0px $colorTransform, 2px 2px 0px $colorTransform, 3px 3px 0px $colorTransform;
       }
     }
-    &.hover-color{
-      &:hover{
-      border-color: darkmagenta;
-      }
-    }
+    // &.hover-color{
+    //   &:hover{
+    //   border-color: darkmagenta;
+    //   }
+    // }
 }
 
 .header__link--logo {

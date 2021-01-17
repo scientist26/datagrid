@@ -2,6 +2,8 @@ $colorChecked:#0b76ef;
 $colorHoverActive:#b3d7ff;
 
 .columns-type__option {
+  position: absolute;
+  display: none;
   width: 160px;
   height: auto;
   margin-top: 7px;
@@ -10,6 +12,7 @@ $colorHoverActive:#b3d7ff;
   box-sizing: border-box;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
+  z-index: 2;
 }
 
 .custom-checkbox {

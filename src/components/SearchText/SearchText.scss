@@ -3,7 +3,7 @@ $background-color: #8B83BA;
 
 .search-text {
   height: fit-content;
-  margin-top: 7px;
+  margin: 7px;
   background: #FFFFFF;
   border: 1px solid #C6C2DE;
   box-sizing: border-box;
@@ -17,7 +17,7 @@ $background-color: #8B83BA;
 }
 
 .search-text__title {
-  padding: 5px 0;
+  padding: 2px 0;
   text-align: center;
   font-weight: 600;
   font-size: 1rem;
@@ -47,6 +47,15 @@ $background-color: #8B83BA;
       border-color: #1890ff;
     }
   }
+}
+
+.unselectable {
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none;   
+  -khtml-user-select: none;    
+  -moz-user-select: none;      
+  -ms-user-select: none;      
+  user-select: none;          
 }
 
 .ant-btn-primary {

@@ -1,0 +1,35 @@
+$text-color: #25213B;
+.visual-control {
+  height: fit-content;
+  margin: 7px;
+  background: #FFFFFF;
+  border: 1px solid #C6C2DE;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-size: 1rem;
+  & .visual-control__title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: $text-color;
+  }
+  & .visual-control__switch {
+    display: flex;
+  }
+  & .visual-control__switch-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    margin: 5px;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    & .visual-control__switch-val {
+      padding: 0 3px;
+      color: $text-color;
+    }
+  }
+}
+.ant-switch-checked {
+  background-color: #8B83BA;
+}

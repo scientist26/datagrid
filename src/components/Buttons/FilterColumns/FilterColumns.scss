@@ -1,0 +1,36 @@
+%external-design {
+  background: #FFFFFF;
+  border: 1px solid #C6C2DE;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.columns-type {
+  position: relative;
+  margin: 7px;
+}
+
+.columns-type__btn {
+  width: 160px;
+  height: 40px;
+  @extend %external-design;
+  span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #25213B;
+  }
+  .columns-type__svg{
+    vertical-align: bottom;
+    color: #8B83BA;
+  }
+  &:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+  }
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: inherit;
+  }
+}

@@ -1,22 +1,33 @@
 import React from 'react';
 import './SettingPanel.scss';
-import { HiFilter } from 'react-icons/hi';
-import ColumnMenu from '../ColumnMenu';
+import FilterColumns from '../Buttons/FilterColumns';
+import ExportButton from '../Buttons/ExportButton';
+import QuerystringButton from '../Buttons/QuerystringButton';
 import SearchText from '../SearchText';
 import EnumFilter from '../EnumFilter';
+import BooleanFilter from '../BooleanFilter';
+import VisualControl from '../VisualControl';
 
 const SettingPanel = () => {
   return (
     <div className="setting">
-      <div className="columns-type">
-        <button className="columns-type__btn">
-          <HiFilter size="1.7rem" className="columns-type__svg" />
-          <span>Filter by columns</span>
-        </button>
-        <ColumnMenu />
+      <div className="toggle-wrapper">
+        <BooleanFilter />
+        <VisualControl />
       </div>
-      <SearchText />
-      <EnumFilter />
+      <div className="search-wrapper">
+        <div className="filter-wrapper">
+          <FilterColumns />
+        </div>
+        <SearchText />
+      </div>
+      <div className="enum-wrapper">
+        <div className="button-wrapper">
+          <ExportButton />
+          <QuerystringButton />
+        </div>
+        <EnumFilter />
+      </div>
     </div>
   );
 };
