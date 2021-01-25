@@ -10,9 +10,10 @@ module.exports = {
     sourceType: 'module',
   },
   extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
-  plugins: [],
+  plugins: ['react-hooks'],
   rules: {
-    'react/prop-types': 1,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': [
       'error',
       {

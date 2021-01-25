@@ -1,6 +1,7 @@
 $text-color: #25213B;
 $background-color: #e9ecef;
 $padding-cell: 5px;
+$icon-color-active: #0b76ef;
 
 %sticky-param {
   position: -webkit-sticky;
@@ -40,6 +41,9 @@ $padding-cell: 5px;
     background-color: rgb(238, 234, 234);
     -webkit-box-shadow: 0px 0px 0px 2px #99A599; 
     box-shadow: 0px 0px 0px 2px #99A599;
+    .table-header__sort-icon {
+      display: inline-block;
+    }
   }
   tr th:nth-last-child(1) {
     border-right: none;
@@ -50,7 +54,7 @@ $padding-cell: 5px;
 }
 
 .table-content {
-  .table-content__data-sticky {
+  .table-content__data--sticky {
     background: #FFFFFF;
     @extend %sticky-param;
     -webkit-box-shadow: 2px 0px 2px -2px #99A599; 
@@ -59,7 +63,7 @@ $padding-cell: 5px;
   .table-content__row:hover {
     &:hover {
       background-color: $background-color;
-      .table-content__data-sticky {
+      .table-content__data--sticky {
         background-color: $background-color;
       }
     }
@@ -67,4 +71,20 @@ $padding-cell: 5px;
   .table-content__data {
     padding: $padding-cell;
   }
+}
+
+.sort-icon-asc,
+.sort-icon-desc {
+  margin-left: 5px;
+  font-size: 1rem;
+  vertical-align: sub;
+  color: $text-color;
+  &:hover {
+    color: $icon-color-active;
+    cursor: pointer;
+  }
+}
+
+.sort-icon--active {
+  color: $icon-color-active;
 }
