@@ -1,7 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducer from './reducer/reducer';
+import loadFakeDataReducer from './modules/loadData';
+import sortReducer from './modules/sort';
 
-const store = createStore(reducer, composeWithDevTools());
+const rootReducer = combineReducers({ loadFakeDataReducer, sortReducer });
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;

@@ -8,17 +8,20 @@ import {
   ImSortNumericAsc,
   ImSortNumbericDesc,
 } from 'react-icons/im';
+
 import {
   fakePersonsDataSortAsc,
   fakePersonsDataSortInitial,
   fakePersonsDataSortDesc,
-} from '../../redux/actions/actions';
+} from '../../redux/modules/sort/sort';
 import { sortFunctionString } from '../../utils/sortFunction';
 
 const DataGrid = () => {
-  const initialPersonsDataStore = useSelector((state) => state.initialPersonsData);
-  const currentPersonsDataStore = useSelector((state) => state.currentPersonsData);
-  const sortDirection = useSelector((state) => state.sortedBy);
+  const initialPersonsDataStore = useSelector(
+    (state) => state.loadFakeDataReducer.initialPersonsData,
+  );
+  const currentPersonsDataStore = useSelector((state) => state.sortReducer.currentPersonsData);
+  const sortDirection = useSelector((state) => state.sortReducer.sortedBy);
   const dispatch = useDispatch();
 
   const classNameSortActiveAsc = (property) => {
@@ -43,7 +46,8 @@ const DataGrid = () => {
       );
     }
   };
-
+  //TODO: replace function argument in 'fakePersonsDataSortDesc' and 'fakePersonsDataSortAsc'
+  //TODO  to const or redux-thunk
   const onSortDesc = (e) => {
     if (sortDirection[e.currentTarget.id] === 'desc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
