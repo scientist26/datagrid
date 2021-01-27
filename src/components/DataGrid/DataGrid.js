@@ -34,7 +34,6 @@ const DataGrid = () => {
   };
 
   const onSortAsc = (e) => {
-    console.log(e.currentTarget.id);
     if (sortDirection[e.currentTarget.id] === 'asc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
     } else {
@@ -114,7 +113,21 @@ const DataGrid = () => {
                 </div>
               </th>
               <th className="table-header__caption">Profession</th>
-              <th className="table-header__caption">Date</th>
+              <th className="table-header__caption">
+                <span className="table-header__caption-title">Date</span>
+                <div className="table-header__sort-icon">
+                  <ImSortNumericAsc
+                    id="date"
+                    className={classNameSortActiveAsc('date')}
+                    onClick={(e) => onSortAsc(e)}
+                  />
+                  <ImSortNumbericDesc
+                    id="date"
+                    className={classNameSortActiveDesc('date')}
+                    onClick={(e) => onSortDesc(e)}
+                  />
+                </div>
+              </th>
               <th className="table-header__caption">
                 <span className="table-header__caption-title">Salary</span>
                 <div className="table-header__sort-icon">

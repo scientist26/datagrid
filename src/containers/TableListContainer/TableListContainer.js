@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fakePersonsDataLoaded } from '../../redux/modules/loadData/loadData';
 import { fakePersonsCurrentData } from '../../redux/modules/sort/sort';
@@ -8,7 +8,6 @@ import TableList from '../../components/TableList';
 
 const TableListContainer = () => {
   const personsDataStore = useSelector((state) => state.sortReducer.currentPersonsData);
-  console.log(personsDataStore);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!localStorage.getItem('fakePersonData')) {

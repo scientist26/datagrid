@@ -11,7 +11,7 @@ const TableList = ({ personsDataStore }) => {
       <td className="table-content__data">{e.age}</td>
       <td className="table-content__data">{e.profession}</td>
       <td className="table-content__data">{e.date}</td>
-      <td className="table-content__data">{e.salary}</td>
+      <td className="table-content__data">{e.salary} $</td>
     </tr>
   ));
   return <tbody className="table-content">{tableItems}</tbody>;

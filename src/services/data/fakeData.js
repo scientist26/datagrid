@@ -10,8 +10,8 @@ for (let i = 0; i < 20; i++) {
     status: randomStatusInWeb(),
     age: randomInteger(18, 65),
     profession: randomProfession(),
-    date: faker.date.past().toLocaleDateString('fr-CH'),
-    salary: `${faker.random.number()} $`,
+    date: faker.date.between('2016-01-01', '2021-01-10').toISOString().slice(0, 10),
+    salary: faker.random.number(),
   });
 }
 
