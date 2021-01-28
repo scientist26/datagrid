@@ -3,7 +3,7 @@ import { HiFilter } from 'react-icons/hi';
 import ColumnMenu from '../../ColumnMenu';
 import './FilterColumns.scss';
 
-const FilterColumns = () => {
+const FilterColumns: React.FC = () => {
   return (
     <div className="columns-type">
       <button className="columns-type__btn">

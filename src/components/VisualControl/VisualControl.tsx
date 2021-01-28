@@ -3,7 +3,7 @@ import { Switch } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import './VisualControl.scss';
 
-const VisualControl = () => {
+const VisualControl: React.FC = () => {
   return (
     <div className="visual-control">
       <p className="visual-control__title">Visualisation</p>

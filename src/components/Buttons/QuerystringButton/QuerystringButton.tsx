@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuerystringButton.scss';
 
-const QuerystringButton = () => {
+const QuerystringButton: React.FC = () => {
   return (
     <div className="querystring">
       <button className="querystring__btn">

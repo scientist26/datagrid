@@ -8,7 +8,7 @@ import EnumFilter from '../EnumFilter';
 import BooleanFilter from '../BooleanFilter';
 import VisualControl from '../VisualControl';
 
-const SettingPanel = () => {
+const SettingPanel: React.FC = () => {
   return (
     <div className="setting">
       <div className="toggle-wrapper">

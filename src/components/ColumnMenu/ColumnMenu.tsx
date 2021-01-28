@@ -1,7 +1,7 @@
 import React from 'react';
 import './ColumnMenu.scss';
 
-const ColumnMenu = () => {
+const ColumnMenu: React.FC = () => {
   return (
     <div className="columns-type__option">
       <input

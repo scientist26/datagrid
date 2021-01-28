@@ -1,9 +1,8 @@
 import React from 'react';
+import { IPersonDataProps } from '../../utils/interfaces';
 
-// eslint-disable-next-line react/prop-types
-const TableList = ({ personsDataStore }) => {
-  // eslint-disable-next-line react/prop-types
-  const tableItems = personsDataStore.map((e, i) => (
+const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
+  const tableItems = personsDataStore.map((e, i: number) => (
     <tr key={i} className="table-content__row">
       <td className="table-content__data table-content__data-sticky">{e.firstName}</td>
       <td className="table-content__data">{e.lastName}</td>

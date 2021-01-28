@@ -3,7 +3,7 @@ import { Switch } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import './BooleanFilter.scss';
 
-const BooleanFilter = () => {
+const BooleanFilter: React.FC = () => {
   return (
     <div className="toggle-filter">
       <p className="toggle-filter__title">Status Filter</p>

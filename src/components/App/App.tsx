@@ -5,7 +5,7 @@ import Header from '../Header';
 import SettingPanel from '../SettingPanel';
 import DataGrid from '../DataGrid';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="app">
       <Header />

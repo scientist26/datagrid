@@ -12,7 +12,7 @@ const options = [
   { value: 'explorer', label: 'Explorer' },
 ];
 
-const EnumFilter = () => {
+const EnumFilter: React.FC = () => {
   return (
     <div className="enum-filter">
       <p className="enum-filter__title">Profession filter</p>

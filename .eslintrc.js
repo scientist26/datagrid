@@ -8,9 +8,14 @@ module.exports = {
     parser: 'babel-eslint',
     ecmaVersion: 2018,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
-  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
-  plugins: ['react-hooks'],
+  parser: '@typescript-eslint/parser',
+  // extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: ['prettier/@typescript-eslint', 'plugin:prettier/recommended'],
+  plugins: ['react-hooks', '@typescript-eslint'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -20,5 +25,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'no-underscore-dangle': 'error',
   },
 };

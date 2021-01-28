@@ -4,7 +4,7 @@ import { Input } from 'antd';
 const { Search } = Input;
 import './SearchText.scss';
 
-const SearchText = () => {
+const SearchText: React.FC = () => {
   return (
     <div className="search-text">
       <p className="search-text__title">Search by columns</p>
@@ -19,7 +19,7 @@ const SearchText = () => {
           allowClear
           enterButton="Search"
           size="large"
-          onSearch={onSearch}
+          // onSearch={onSearch}
         />
       </div>
     </div>
@@ -27,5 +27,3 @@ const SearchText = () => {
 };
 
 export default SearchText;
-
-const onSearch = (value) => console.log(value);

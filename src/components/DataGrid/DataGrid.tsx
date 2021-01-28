@@ -15,47 +15,50 @@ import {
   fakePersonsDataSortDesc,
 } from '../../redux/modules/sort/sort';
 import { sortFunctionString } from '../../utils/sortFunction';
+import { IPerson } from '../../utils/interfaces';
 
-const DataGrid = () => {
-  const initialPersonsDataStore = useSelector(
-    (state) => state.loadFakeDataReducer.initialPersonsData,
+interface RootState {
+  loadFakeDataReducer: any;
+  sortReducer: any;
+  sortedBy: any;
+}
+
+const DataGrid: React.FC = () => {
+  const initialPersonsDataStore: IPerson[] = useSelector(
+    (state: RootState) => state.loadFakeDataReducer.initialPersonsData,
   );
-  const currentPersonsDataStore = useSelector((state) => state.sortReducer.currentPersonsData);
-  const sortDirection = useSelector((state) => state.sortReducer.sortedBy);
+  const currentPersonsDataStore: IPerson[] = useSelector(
+    (state: RootState) => state.sortReducer.currentPersonsData,
+  );
+  const sortDirection = useSelector((state: RootState) => state.sortReducer.sortedBy);
   const dispatch = useDispatch();
 
-  const classNameSortActiveAsc = (property) => {
+  const classNameSortActiveAsc = (property: string) => {
     return sortDirection[property] === 'asc' ? 'sort-icon-asc sort-icon--active' : 'sort-icon-asc';
   };
-  const classNameSortActiveDesc = (property) => {
+  const classNameSortActiveDesc = (property: string) => {
     return sortDirection[property] === 'desc'
       ? 'sort-icon-desc sort-icon--active'
       : 'sort-icon-desc';
   };
 
-  const onSortAsc = (e) => {
-    if (sortDirection[e.currentTarget.id] === 'asc') {
+  const onSortAsc = (e: React.MouseEvent): void => {
+    const ID: string = e.currentTarget.id;
+    if (sortDirection[ID] === 'asc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
     } else {
-      dispatch(
-        fakePersonsDataSortAsc(
-          sortFunctionString(currentPersonsDataStore, 'asc', e.currentTarget.id),
-          e.currentTarget.id,
-        ),
-      );
+      dispatch(fakePersonsDataSortAsc(sortFunctionString(currentPersonsDataStore, 'asc', ID), ID));
     }
   };
   //TODO: replace function argument in 'fakePersonsDataSortDesc' and 'fakePersonsDataSortAsc'
   //TODO  to const or redux-thunk
-  const onSortDesc = (e) => {
-    if (sortDirection[e.currentTarget.id] === 'desc') {
+  const onSortDesc = (e: React.MouseEvent): void => {
+    const ID: string = e.currentTarget.id;
+    if (sortDirection[ID] === 'desc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
     } else {
       dispatch(
-        fakePersonsDataSortDesc(
-          sortFunctionString(currentPersonsDataStore, 'desc', e.currentTarget.id),
-          e.currentTarget.id,
-        ),
+        fakePersonsDataSortDesc(sortFunctionString(currentPersonsDataStore, 'desc', ID), ID),
       );
     }
   };
