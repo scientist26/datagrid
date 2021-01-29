@@ -16,12 +16,7 @@ import {
 } from '../../redux/modules/sort/sort';
 import { sortFunctionString } from '../../utils/sortFunction';
 import { IPerson } from '../../utils/interfaces';
-
-interface RootState {
-  loadFakeDataReducer: any;
-  sortReducer: any;
-  sortedBy: any;
-}
+import { RootState } from '../../redux/store';
 
 const DataGrid: React.FC = () => {
   const initialPersonsDataStore: IPerson[] = useSelector(

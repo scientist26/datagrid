@@ -1,5 +1,5 @@
 import { IPerson } from '../../../utils/interfaces';
-const FAKE_PERSONS_DATA_LOADED: string = 'modules/loadData/FAKE_PERSONS_DATA_LOADED';
+const FAKE_PERSONS_DATA_LOADED = 'modules/loadData/FAKE_PERSONS_DATA_LOADED';
 
 type TypeLoadDataState = {
   initialPersonsData: [] | IPerson[];
