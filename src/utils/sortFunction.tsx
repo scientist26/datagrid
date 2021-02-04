@@ -5,7 +5,8 @@ export const sortFunctionString = (
   direction: string,
   property: string | number,
 ): IPerson[] => {
-  return data.sort((a: any, b: any) => {
+  let newArr = data.slice();
+  return newArr.sort((a: any, b: any) => {
     if (a[property] > b[property]) {
       return direction === 'asc' ? 1 : -1;
     }

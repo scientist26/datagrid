@@ -42,7 +42,11 @@ const DataGrid: React.FC = () => {
     if (sortDirection[ID] === 'asc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
     } else {
-      dispatch(fakePersonsDataSortAsc(sortFunctionString(currentPersonsDataStore, 'asc', ID), ID));
+      const payload = {
+        personDataSortAsc: sortFunctionString(currentPersonsDataStore, 'asc', ID),
+        propertyId: ID,
+      };
+      dispatch(fakePersonsDataSortAsc(payload));
     }
   };
   //TODO: replace function argument in 'fakePersonsDataSortDesc' and 'fakePersonsDataSortAsc'
@@ -52,9 +56,11 @@ const DataGrid: React.FC = () => {
     if (sortDirection[ID] === 'desc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
     } else {
-      dispatch(
-        fakePersonsDataSortDesc(sortFunctionString(currentPersonsDataStore, 'desc', ID), ID),
-      );
+      const payload = {
+        personDataSortAsc: sortFunctionString(currentPersonsDataStore, 'desc', ID),
+        propertyId: ID,
+      };
+      dispatch(fakePersonsDataSortDesc(payload));
     }
   };
 
