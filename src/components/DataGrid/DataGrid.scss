@@ -1,4 +1,4 @@
-$text-color: #25213B;
+$text-color: #25213b;
 $background-color: #e9ecef;
 $padding-cell: 5px;
 $icon-color-active: #0b76ef;
@@ -14,8 +14,8 @@ $icon-color-active: #0b76ef;
   max-width: 1200px;
   height: 60vh;
   margin: 7px auto;
-  background: #FFFFFF;
-  border: 1px solid #C6C2DE;
+  background: #ffffff;
+  border: 1px solid #c6c2de;
   box-sizing: border-box;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
@@ -23,15 +23,15 @@ $icon-color-active: #0b76ef;
 }
 
 .table {
-    width: 100%;
-    color: $text-color;
-    font-size: 0.9rem;
-    thead::after {
-      content:"@";
-      display:block;
-      line-height:10px;
-      text-indent:-99999px;
-    }
+  width: 100%;
+  color: $text-color;
+  font-size: 0.9rem;
+  thead::after {
+    content: '@';
+    display: block;
+    line-height: 10px;
+    text-indent: -99999px;
+  }
   th {
     @extend %sticky-param;
     top: 0;
@@ -39,8 +39,8 @@ $icon-color-active: #0b76ef;
     min-width: 100px;
     padding: $padding-cell;
     background-color: rgb(238, 234, 234);
-    -webkit-box-shadow: 0px 0px 0px 2px #99A599; 
-    box-shadow: 0px 0px 0px 2px #99A599;
+    -webkit-box-shadow: 0px 0px 0px 2px #99a599;
+    box-shadow: 0px 0px 0px 2px #99a599;
     .table-header__sort-icon {
       display: inline-block;
     }
@@ -54,12 +54,6 @@ $icon-color-active: #0b76ef;
 }
 
 .table-content {
-  .table-content__data--sticky {
-    background: #FFFFFF;
-    @extend %sticky-param;
-    -webkit-box-shadow: 2px 0px 2px -2px #99A599; 
-    box-shadow: 2px 0px 2px -2px #99A599;
-  }
   .table-content__row:hover {
     &:hover {
       background-color: $background-color;
@@ -70,6 +64,12 @@ $icon-color-active: #0b76ef;
   }
   .table-content__data {
     padding: $padding-cell;
+  }
+  .table-content__data--sticky {
+    background: #ffffff;
+    @extend %sticky-param;
+    -webkit-box-shadow: 2px 0px 2px -2px #99a599;
+    box-shadow: 2px 0px 2px -2px #99a599;
   }
 }
 

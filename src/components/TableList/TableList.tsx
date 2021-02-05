@@ -1,18 +1,41 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 import { IPersonDataProps } from '../../utils/interfaces';
 
 const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
-  const tableItems = personsDataStore.map((e, i: number) => (
-    <tr key={i} className="table-content__row">
-      <td className="table-content__data table-content__data-sticky">{e.firstName}</td>
-      <td className="table-content__data">{e.lastName}</td>
-      <td className="table-content__data">{e.status}</td>
-      <td className="table-content__data">{e.age}</td>
-      <td className="table-content__data">{e.profession}</td>
-      <td className="table-content__data">{e.date}</td>
-      <td className="table-content__data">{e.salary} $</td>
-    </tr>
-  ));
+  const headerTableDataStore = useSelector(
+    (state: RootState) => state.visibleColumnsReducer.tableHeader,
+  );
+  const tableItems = personsDataStore.map((e, i: number) => {
+    const personDataValues = Object.entries(e);
+    const itemCells = personDataValues.slice(1).map((e, i) => {
+      let isVisibleCells = true;
+      headerTableDataStore.forEach((el) => {
+        if (el.id === e[0]) {
+          isVisibleCells = el.isVisible;
+        }
+      });
+      if (i === 0) {
+        return isVisibleCells ? (
+          <td className="table-content__data table-content__data--sticky">{e[1]}</td>
+        ) : null;
+      } else {
+        return isVisibleCells ? (
+          e[0] === 'salary' ? (
+            <td className="table-content__data">{e[1]} $</td>
+          ) : (
+            <td className="table-content__data">{e[1]}</td>
+          )
+        ) : null;
+      }
+    });
+    return (
+      <tr key={i} className="table-content__row">
+        {itemCells}
+      </tr>
+    );
+  });
   return <tbody className="table-content">{tableItems}</tbody>;
 };
 

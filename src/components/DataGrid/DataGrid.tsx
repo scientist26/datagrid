@@ -16,7 +16,7 @@ import {
 } from '../../redux/modules/sort/sort';
 import { sortFunctionString } from '../../utils/sortFunction';
 import { IPerson } from '../../utils/interfaces';
-import { RootState } from '../../redux/store';
+import { RootState, TableDispatch } from '../../redux/store';
 
 const DataGrid: React.FC = () => {
   const initialPersonsDataStore: IPerson[] = useSelector(
@@ -25,8 +25,11 @@ const DataGrid: React.FC = () => {
   const currentPersonsDataStore: IPerson[] = useSelector(
     (state: RootState) => state.sortReducer.currentPersonsData,
   );
+  const headerTableDataStore = useSelector(
+    (state: RootState) => state.visibleColumnsReducer.tableHeader,
+  );
   const sortDirection = useSelector((state: RootState) => state.sortReducer.sortedBy);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<TableDispatch>();
 
   const classNameSortActiveAsc = (property: string) => {
     return sortDirection[property] === 'asc' ? 'sort-icon-asc sort-icon--active' : 'sort-icon-asc';
@@ -37,7 +40,7 @@ const DataGrid: React.FC = () => {
       : 'sort-icon-desc';
   };
 
-  const onSortAsc = (e: React.MouseEvent): void => {
+  const onSortAsc = (e: React.MouseEvent<SVGElement>): void => {
     const ID: string = e.currentTarget.id;
     if (sortDirection[ID] === 'asc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
@@ -51,7 +54,7 @@ const DataGrid: React.FC = () => {
   };
   //TODO: replace function argument in 'fakePersonsDataSortDesc' and 'fakePersonsDataSortAsc'
   //TODO  to const or redux-thunk
-  const onSortDesc = (e: React.MouseEvent): void => {
+  const onSortDesc = (e: React.MouseEvent<SVGElement>): void => {
     const ID: string = e.currentTarget.id;
     if (sortDirection[ID] === 'desc') {
       dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
@@ -63,91 +66,54 @@ const DataGrid: React.FC = () => {
       dispatch(fakePersonsDataSortDesc(payload));
     }
   };
-
+  const tableHeaderItems = headerTableDataStore.map((e) => {
+    return (
+      <>
+        {e.isVisible ? (
+          <th className="table-header__caption">
+            <span className="table-header__caption-title">{e.title}</span>
+            {e.isSort ? (
+              <div className="table-header__sort-icon">
+                {e.isSortByString ? (
+                  <>
+                    <ImSortAlphaAsc
+                      id={e.id}
+                      className={classNameSortActiveAsc(e.id)}
+                      onClick={(e) => onSortAsc(e)}
+                    />
+                    <ImSortAlphaDesc
+                      id={e.id}
+                      className={classNameSortActiveDesc(e.id)}
+                      onClick={(e) => onSortDesc(e)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <ImSortNumericAsc
+                      id={e.id}
+                      className={classNameSortActiveAsc(e.id)}
+                      onClick={(e) => onSortAsc(e)}
+                    />
+                    <ImSortNumbericDesc
+                      id={e.id}
+                      className={classNameSortActiveDesc(e.id)}
+                      onClick={(e) => onSortDesc(e)}
+                    />
+                  </>
+                )}
+              </div>
+            ) : null}
+          </th>
+        ) : null}
+      </>
+    );
+  });
   return (
     <div className="table-wrapper">
       <div className="table-container">
         <table className="table">
           <thead className="table-header">
-            <tr className="table-header__row">
-              <th className="table-header__caption table-header__caption--sticky">
-                <span className="table-header__caption-title">First Name</span>
-                <div className="table-header__sort-icon">
-                  <ImSortAlphaAsc
-                    id="firstName"
-                    className={classNameSortActiveAsc('firstName')}
-                    onClick={(e) => onSortAsc(e)}
-                  />
-                  <ImSortAlphaDesc
-                    id="firstName"
-                    className={classNameSortActiveDesc('firstName')}
-                    onClick={(e) => onSortDesc(e)}
-                  />
-                </div>
-              </th>
-              <th className="table-header__caption">
-                <span className="table-header__caption-title">Last Name</span>
-                <div className="table-header__sort-icon">
-                  <ImSortAlphaAsc
-                    id="lastName"
-                    className={classNameSortActiveAsc('lastName')}
-                    onClick={(e) => onSortAsc(e)}
-                  />
-                  <ImSortAlphaDesc
-                    id="lastName"
-                    className={classNameSortActiveDesc('lastName')}
-                    onClick={(e) => onSortDesc(e)}
-                  />
-                </div>
-              </th>
-              <th className="table-header__caption">Status</th>
-              <th className="table-header__caption">
-                <span className="table-header__caption-title">Age</span>
-                <div className="table-header__sort-icon">
-                  <ImSortNumericAsc
-                    id="age"
-                    className={classNameSortActiveAsc('age')}
-                    onClick={(e) => onSortAsc(e)}
-                  />
-                  <ImSortNumbericDesc
-                    id="age"
-                    className={classNameSortActiveDesc('age')}
-                    onClick={(e) => onSortDesc(e)}
-                  />
-                </div>
-              </th>
-              <th className="table-header__caption">Profession</th>
-              <th className="table-header__caption">
-                <span className="table-header__caption-title">Date</span>
-                <div className="table-header__sort-icon">
-                  <ImSortNumericAsc
-                    id="date"
-                    className={classNameSortActiveAsc('date')}
-                    onClick={(e) => onSortAsc(e)}
-                  />
-                  <ImSortNumbericDesc
-                    id="date"
-                    className={classNameSortActiveDesc('date')}
-                    onClick={(e) => onSortDesc(e)}
-                  />
-                </div>
-              </th>
-              <th className="table-header__caption">
-                <span className="table-header__caption-title">Salary</span>
-                <div className="table-header__sort-icon">
-                  <ImSortNumericAsc
-                    id="salary"
-                    className={classNameSortActiveAsc('salary')}
-                    onClick={(e) => onSortAsc(e)}
-                  />
-                  <ImSortNumbericDesc
-                    id="salary"
-                    className={classNameSortActiveDesc('salary')}
-                    onClick={(e) => onSortDesc(e)}
-                  />
-                </div>
-              </th>
-            </tr>
+            <tr className="table-header__row">{tableHeaderItems}</tr>
           </thead>
           <TableListContainer />
         </table>
