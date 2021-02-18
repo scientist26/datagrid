@@ -27,7 +27,7 @@ const initialState: ICurrentDataState = {
   initialPersonsData: [],
   currentPersonsData: [],
   sortedBy: {},
-  searchColumns: searchColumns,
+  searchColumns,
 };
 
 interface IActionCheckColumn {

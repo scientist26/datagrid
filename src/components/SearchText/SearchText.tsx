@@ -19,11 +19,15 @@ const SearchText: React.FC = () => {
     dispatch(checkColumn(ID));
   };
 
-  // const handleSearch = (value: any) => {
-  //   dispatch(searchByColumn(value));
-  // };
   const handleChange = (e: any) => {
-    dispatch(searchByColumn(e.currentTarget.value));
+    const searchBy = columnsData
+      .map((e) => (e.isChecked === true ? e.id : undefined))
+      .filter((e) => e !== undefined);
+    if (searchBy.length === 0) {
+      return;
+    } else {
+      dispatch(searchByColumn(e.currentTarget.value));
+    }
   };
 
   return (
@@ -51,7 +55,6 @@ const SearchText: React.FC = () => {
           allowClear
           enterButton="Search"
           size="large"
-          // onSearch={(e) => handleSearch(e)}
           onChange={(e) => handleChange(e)}
         />
       </div>

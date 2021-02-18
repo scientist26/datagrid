@@ -4,6 +4,9 @@ import { RootState } from '../../redux/store';
 import { IPersonDataProps } from '../../utils/interfaces';
 
 const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
+  const webStatus = useSelector((state: RootState) => state.webStatusFilterSlice.webStatusFilter);
+  const isOnline = webStatus.online;
+  const isOffline = webStatus.offline;
   const headerTableDataStore = useSelector(
     (state: RootState) => state.visibleColumnsSlice.tableHeader,
   );
@@ -36,10 +39,16 @@ const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
         ) : null;
       }
     });
+
+    let status = e.status === 'Online' ? isOnline : isOffline;
     return (
-      <tr key={i} className="table-content__row">
-        {itemCells}
-      </tr>
+      <>
+        {status ? (
+          <tr key={i} className="table-content__row">
+            {itemCells}
+          </tr>
+        ) : null}
+      </>
     );
   });
   return <tbody className="table-content">{tableItems}</tbody>;

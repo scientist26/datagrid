@@ -5,7 +5,7 @@ import ExportButton from '../Buttons/ExportButton';
 import QuerystringButton from '../Buttons/QuerystringButton';
 import SearchText from '../SearchText';
 import EnumFilter from '../EnumFilter';
-import BooleanFilter from '../BooleanFilter';
+import BooleanFilter from '../WebStatusFilter';
 import VisualControl from '../VisualControl';
 
 const SettingPanel: React.FC = () => {
