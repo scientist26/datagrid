@@ -4,6 +4,7 @@ const dataColumns = [
     isSort: true,
     isSortByString: true,
     id: 'firstName',
+    name: 'firstName',
     isVisible: true,
   },
   {
@@ -11,6 +12,7 @@ const dataColumns = [
     isSort: true,
     isSortByString: true,
     id: 'lastName',
+    name: 'lastName',
     isVisible: true,
   },
   {
@@ -18,6 +20,7 @@ const dataColumns = [
     isSort: false,
     isSortByString: false,
     id: 'status',
+    name: 'status',
     isVisible: true,
   },
   {
@@ -25,6 +28,7 @@ const dataColumns = [
     isSort: true,
     isSortByString: false,
     id: 'age',
+    name: 'age',
     isVisible: true,
   },
   {
@@ -32,6 +36,7 @@ const dataColumns = [
     isSort: false,
     isSortByString: false,
     id: 'profession',
+    name: 'profession',
     isVisible: true,
   },
   {
@@ -39,6 +44,7 @@ const dataColumns = [
     isSort: true,
     isSortByString: false,
     id: 'date',
+    name: 'date',
     isVisible: true,
   },
   {
@@ -46,6 +52,7 @@ const dataColumns = [
     isSort: true,
     isSortByString: false,
     id: 'salary',
+    name: 'salary',
     isVisible: true,
   },
 ];

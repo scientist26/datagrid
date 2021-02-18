@@ -5,7 +5,7 @@ import { IPersonDataProps } from '../../utils/interfaces';
 
 const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
   const headerTableDataStore = useSelector(
-    (state: RootState) => state.visibleColumnsReducer.tableHeader,
+    (state: RootState) => state.visibleColumnsSlice.tableHeader,
   );
   const tableItems = personsDataStore.map((e, i: number) => {
     const personDataValues = Object.entries(e);
@@ -18,14 +18,20 @@ const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
       });
       if (i === 0) {
         return isVisibleCells ? (
-          <td className="table-content__data table-content__data--sticky">{e[1]}</td>
+          <td className="table-content__data table-content__data--sticky" key={i}>
+            {e[1]}
+          </td>
         ) : null;
       } else {
         return isVisibleCells ? (
           e[0] === 'salary' ? (
-            <td className="table-content__data">{e[1]} $</td>
+            <td className="table-content__data" key={i}>
+              {e[1]} $
+            </td>
           ) : (
-            <td className="table-content__data">{e[1]}</td>
+            <td className="table-content__data" key={i}>
+              {e[1]}
+            </td>
           )
         ) : null;
       }

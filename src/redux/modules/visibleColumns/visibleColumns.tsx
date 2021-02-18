@@ -6,6 +6,7 @@ interface ITableHeaderItem {
   isSort: boolean;
   isSortByString: boolean;
   id: string;
+  name: string;
   isVisible: boolean;
 }
 
@@ -27,7 +28,7 @@ interface IActionVisible {
   type: string;
 }
 
-const visibleColumnsReducer = createSlice({
+const visibleColumnsSlice = createSlice({
   name: 'visibleColumns',
   initialState,
   reducers: {
@@ -51,5 +52,5 @@ const visibleColumnsReducer = createSlice({
   },
 });
 
-export default visibleColumnsReducer.reducer;
-export const { changeVisible, openMenuColumns } = visibleColumnsReducer.actions;
+export default visibleColumnsSlice.reducer;
+export const { changeVisible, openMenuColumns } = visibleColumnsSlice.actions;

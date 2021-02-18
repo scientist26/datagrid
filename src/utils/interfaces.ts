@@ -12,3 +12,9 @@ export interface IPerson {
 export interface IPersonDataProps {
   personsDataStore: IPerson[];
 }
+
+export interface IColumnSearchTitle {
+  id: string;
+  title: string;
+  isChecked: boolean;
+}

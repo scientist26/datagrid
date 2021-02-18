@@ -12,7 +12,7 @@ const initialState: TypeLoadDataState = {
   initialPersonsData: [],
 };
 
-const loadFakeDataReducer = createSlice({
+const loadFakeDataSlice = createSlice({
   name: 'loadData',
   initialState,
   reducers: {
@@ -22,5 +22,5 @@ const loadFakeDataReducer = createSlice({
   },
 });
 
-export default loadFakeDataReducer.reducer;
-export const { fakePersonsDataLoaded } = loadFakeDataReducer.actions;
+export default loadFakeDataSlice.reducer;
+export const { fakePersonsDataLoaded } = loadFakeDataSlice.actions;

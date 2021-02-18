@@ -8,11 +8,10 @@ import { openMenuColumns } from '../../../redux/modules/visibleColumns/visibleCo
 
 const FilterColumns: React.FC = () => {
   const isOpenMenuColumns = useSelector((state: RootState): boolean => {
-    return state.visibleColumnsReducer.isOpenMenuColumns;
+    return state.visibleColumnsSlice.isOpenMenuColumns;
   });
   const dispatch = useDispatch<TableDispatch>();
 
-  console.log(isOpenMenuColumns);
   const openMenuHandler = () => {
     dispatch(openMenuColumns());
   };

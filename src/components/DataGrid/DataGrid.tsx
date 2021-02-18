@@ -13,22 +13,22 @@ import {
   fakePersonsDataSortAsc,
   fakePersonsDataSortInitial,
   fakePersonsDataSortDesc,
-} from '../../redux/modules/sort/sort';
+} from '../../redux/modules/setting/setting';
 import { sortFunctionString } from '../../utils/sortFunction';
 import { IPerson } from '../../utils/interfaces';
 import { RootState, TableDispatch } from '../../redux/store';
 
 const DataGrid: React.FC = () => {
-  const initialPersonsDataStore: IPerson[] = useSelector(
-    (state: RootState) => state.loadFakeDataReducer.initialPersonsData,
-  );
+  // const initialPersonsDataStore: IPerson[] = useSelector(
+  //   (state: RootState) => state.loadFakeDataSlice.initialPersonsData,
+  // );
   const currentPersonsDataStore: IPerson[] = useSelector(
-    (state: RootState) => state.sortReducer.currentPersonsData,
+    (state: RootState) => state.settingSlice.currentPersonsData,
   );
   const headerTableDataStore = useSelector(
-    (state: RootState) => state.visibleColumnsReducer.tableHeader,
+    (state: RootState) => state.visibleColumnsSlice.tableHeader,
   );
-  const sortDirection = useSelector((state: RootState) => state.sortReducer.sortedBy);
+  const sortDirection = useSelector((state: RootState) => state.settingSlice.sortedBy);
   const dispatch = useDispatch<TableDispatch>();
 
   const classNameSortActiveAsc = (property: string) => {
@@ -43,7 +43,7 @@ const DataGrid: React.FC = () => {
   const onSortAsc = (e: React.MouseEvent<SVGElement>): void => {
     const ID: string = e.currentTarget.id;
     if (sortDirection[ID] === 'asc') {
-      dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
+      dispatch(fakePersonsDataSortInitial());
     } else {
       const payload = {
         personDataSortAsc: sortFunctionString(currentPersonsDataStore, 'asc', ID),
@@ -57,7 +57,7 @@ const DataGrid: React.FC = () => {
   const onSortDesc = (e: React.MouseEvent<SVGElement>): void => {
     const ID: string = e.currentTarget.id;
     if (sortDirection[ID] === 'desc') {
-      dispatch(fakePersonsDataSortInitial(initialPersonsDataStore));
+      dispatch(fakePersonsDataSortInitial());
     } else {
       const payload = {
         personDataSortAsc: sortFunctionString(currentPersonsDataStore, 'desc', ID),
@@ -66,9 +66,9 @@ const DataGrid: React.FC = () => {
       dispatch(fakePersonsDataSortDesc(payload));
     }
   };
-  const tableHeaderItems = headerTableDataStore.map((e) => {
+  const tableHeaderItems = headerTableDataStore.map((e, i) => {
     return (
-      <>
+      <React.Fragment key={i}>
         {e.isVisible ? (
           <th className="table-header__caption">
             <span className="table-header__caption-title">{e.title}</span>
@@ -105,7 +105,7 @@ const DataGrid: React.FC = () => {
             ) : null}
           </th>
         ) : null}
-      </>
+      </React.Fragment>
     );
   });
   return (
