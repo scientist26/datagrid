@@ -10,25 +10,27 @@ import VisualControl from '../VisualControl';
 
 const SettingPanel: React.FC = () => {
   return (
-    <div className="setting">
-      <div className="toggle-wrapper">
-        <BooleanFilter />
-        <VisualControl />
-      </div>
-      <div className="search-wrapper">
-        <div className="filter-wrapper">
-          <FilterColumns />
+    <>
+      <div className="setting">
+        <div className="toggle-wrapper">
+          <BooleanFilter />
+          <VisualControl />
         </div>
-        <SearchText />
-      </div>
-      <div className="enum-wrapper">
-        <div className="button-wrapper">
-          <ExportButton />
-          <QuerystringButton />
+        <div className="search-wrapper">
+          <div className="filter-wrapper">
+            <FilterColumns />
+          </div>
+          <SearchText />
         </div>
-        <EnumFilter />
+        <div className="enum-wrapper">
+          <div className="button-wrapper">
+            <ExportButton />
+            <QuerystringButton />
+          </div>
+          <EnumFilter />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

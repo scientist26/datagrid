@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, TableDispatch } from '../../redux/store';
 import { IPersonDataProps } from '../../utils/interfaces';
+import { addSelectRow } from '../../redux/modules/setting/setting';
 
 const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
   const webStatus = useSelector((state: RootState) => state.webStatusFilterSlice.webStatusFilter);
@@ -19,6 +20,9 @@ const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
   const headerTableDataStore = useSelector(
     (state: RootState) => state.visibleColumnsSlice.tableHeader,
   );
+  const selectedRowsDataState = useSelector((state: RootState) => state.settingSlice.selectedRow);
+
+  const dispatch = useDispatch<TableDispatch>();
   const tableItems = personsDataStore.map((e, i: number) => {
     const personDataValues = Object.entries(e);
     const itemCells = personDataValues.slice(1).map((e, i) => {
@@ -61,10 +65,28 @@ const TableList: React.FC<IPersonDataProps> = ({ personsDataStore }) => {
         : e.profession === 'Explorer'
         ? isExplorer
         : null;
+
+    const classNameRow = selectedRowsDataState.includes(e.key)
+      ? 'table-content__row table-content__row--select'
+      : 'table-content__row';
+    const handleSelectRow = (e: any) => {
+      const ID: number = +e.currentTarget.id;
+
+      if (e.shiftKey) {
+        dispatch(addSelectRow({ id: ID, key: 'shift' }));
+      } else {
+        dispatch(addSelectRow({ id: ID }));
+      }
+    };
     return (
-      <React.Fragment key={i}>
+      <React.Fragment key={e.key}>
         {status && profession ? (
-          <tr key={i} className="table-content__row">
+          <tr
+            key={e.key}
+            id={e.key?.toString()}
+            className={classNameRow}
+            onClick={(e) => handleSelectRow(e)}
+          >
             {itemCells}
           </tr>
         ) : null}

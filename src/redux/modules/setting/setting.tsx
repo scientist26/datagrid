@@ -8,6 +8,7 @@ export interface ICurrentDataState {
   currentPersonsData: [] | IPerson[];
   sortedBy: { [key: string]: string };
   searchColumns: IColumnSearchTitle[];
+  selectedRow: number[];
 }
 
 interface IActionSortData {
@@ -28,10 +29,19 @@ const initialState: ICurrentDataState = {
   currentPersonsData: [],
   sortedBy: {},
   searchColumns,
+  selectedRow: [],
 };
 
 interface IActionCheckColumn {
   payload: string;
+  type: string;
+}
+
+interface IActionSelectRow {
+  payload: {
+    id: number;
+    key?: string;
+  };
   type: string;
 }
 
@@ -90,6 +100,34 @@ const settingSlice = createSlice({
       );
       state.currentPersonsData = [...finishSearchArr];
     },
+    addSelectRow: (state, action: IActionSelectRow) => {
+      if (!action.payload.key) {
+        if (state.selectedRow.includes(action.payload.id)) {
+          let filterSelectRow = state.selectedRow.filter((e) => e !== action.payload.id);
+          state.selectedRow = [...filterSelectRow];
+        } else if (!state.selectedRow.includes(action.payload.id)) {
+          state.selectedRow.push(action.payload.id);
+        }
+      } else {
+        const firstEl = state.currentPersonsData.findIndex(
+          (e) => e.key === state.selectedRow[state.selectedRow.length - 1],
+        );
+        const lastEl = state.currentPersonsData.findIndex((e, i) => i === action.payload.id);
+        const fragment =
+          firstEl < lastEl
+            ? state.currentPersonsData.slice(firstEl, lastEl + 1)
+            : state.currentPersonsData.slice(lastEl, firstEl + 1);
+        fragment.forEach((e) => state.selectedRow.push(e.key));
+        state.selectedRow = [...Array.from(new Set(state.selectedRow))];
+      }
+    },
+    deleteSelectRow: (state) => {
+      const currentPersonsDataFilter = state.currentPersonsData.filter(
+        (e) => !state.selectedRow.includes(e.key),
+      );
+      state.currentPersonsData = [...currentPersonsDataFilter];
+      state.selectedRow.splice(0, state.selectedRow.length);
+    },
   },
 });
 
@@ -102,4 +140,6 @@ export const {
   fakePersonsCurrentData,
   checkColumn,
   searchByColumn,
+  addSelectRow,
+  deleteSelectRow,
 } = settingSlice.actions;

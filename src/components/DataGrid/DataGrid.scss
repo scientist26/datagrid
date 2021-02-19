@@ -1,5 +1,7 @@
 $text-color: #25213b;
+$text-color-selected: #000000;
 $background-color: #e9ecef;
+$background-color-selected: #c7cace;
 $padding-cell: 5px;
 $icon-color-active: #0b76ef;
 
@@ -54,6 +56,7 @@ $icon-color-active: #0b76ef;
 }
 
 .table-content {
+  user-select: none;
   .table-content__row:hover {
     &:hover {
       background-color: $background-color;
@@ -62,6 +65,25 @@ $icon-color-active: #0b76ef;
       }
     }
   }
+  .table-content__row--select {
+    background-color: $background-color-selected;
+    color: $text-color-selected;
+    .table-content__data--sticky {
+      background-color: $background-color-selected;
+      color: $text-color-selected;
+    }
+  }
+  .table-content__row--select:hover {
+    &:hover {
+      background-color: $background-color-selected;
+      color: $text-color-selected;
+      .table-content__data--sticky {
+        background-color: $background-color-selected;
+        color: $text-color-selected;
+      }
+    }
+  }
+
   .table-content__data {
     padding: $padding-cell;
   }
@@ -87,4 +109,11 @@ $icon-color-active: #0b76ef;
 
 .sort-icon--active {
   color: $icon-color-active;
+}
+
+.delete-rows {
+  position: sticky;
+  bottom: 15px;
+  left: 15px;
+  z-index: 5;
 }

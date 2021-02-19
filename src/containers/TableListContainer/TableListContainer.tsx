@@ -1,19 +1,23 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { fakePersonsDataLoaded } from '../../redux/modules/loadData/loadData';
-import { fakePersonsDataLoaded } from '../../redux/modules/setting/setting';
-import { fakePersonsCurrentData } from '../../redux/modules/setting/setting';
+import {
+  fakePersonsCurrentData,
+  fakePersonsDataLoaded,
+  deleteSelectRow,
+} from '../../redux/modules/setting/setting';
 import fakePersonData from '../../services/data/fakeData';
 import TableList from '../../components/TableList';
 import { IPerson } from '../../utils/interfaces';
-import { RootState } from '../../redux/store';
+import { RootState, TableDispatch } from '../../redux/store';
+import { Button } from 'antd';
 
 const TableListContainer: React.FC = () => {
   const personsDataStore: IPerson[] = useSelector(
     (state: RootState) => state.settingSlice.currentPersonsData,
   );
-  const dispatch = useDispatch();
+  const selectedRowsDataState = useSelector((state: RootState) => state.settingSlice.selectedRow);
+  const dispatch = useDispatch<TableDispatch>();
   useEffect(() => {
     if (!localStorage.getItem('fakePersonData')) {
       localStorage.setItem('fakePersonData', JSON.stringify(fakePersonData));
@@ -24,7 +28,29 @@ const TableListContainer: React.FC = () => {
     dispatch(fakePersonsDataLoaded(personDataLocalStorage));
     dispatch(fakePersonsCurrentData(personDataLocalStorage));
   }, [dispatch]);
-  return <TableList personsDataStore={personsDataStore} />;
+
+  const deleteRowsHandle = () => {
+    dispatch(deleteSelectRow());
+  };
+
+  return (
+    <>
+      <TableList personsDataStore={personsDataStore} />
+      <>
+        {/* <tfoot>
+          <tr>
+            <td> */}
+        {selectedRowsDataState.length === 0 ? null : (
+          <Button type="primary" className="delete-rows" onClick={deleteRowsHandle}>
+            Delete selected rows
+          </Button>
+        )}
+        {/* </td>
+          </tr>
+        </tfoot> */}
+      </>
+    </>
+  );
 };
 
 export default TableListContainer;
