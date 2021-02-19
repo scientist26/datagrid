@@ -4,7 +4,7 @@ import FilterColumns from '../Buttons/FilterColumns';
 import ExportButton from '../Buttons/ExportButton';
 import QuerystringButton from '../Buttons/QuerystringButton';
 import SearchText from '../SearchText';
-import EnumFilter from '../EnumFilter';
+import EnumFilter from '../ProfessionFilter';
 import BooleanFilter from '../WebStatusFilter';
 import VisualControl from '../VisualControl';
 

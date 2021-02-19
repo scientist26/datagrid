@@ -1,9 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, TableDispatch } from '../../redux/store';
+import { checkProfessionFilter } from '../../redux/modules/professionFilter/professionFilter';
 const animatedComponents = makeAnimated();
 
-import './EnumFilter.scss';
+import './ProfessionFilter.scss';
 const options = [
   { value: 'teacher', label: 'Teacher' },
   { value: 'doctor', label: 'Doctor' },
@@ -12,12 +15,20 @@ const options = [
   { value: 'explorer', label: 'Explorer' },
 ];
 
-const EnumFilter: React.FC = () => {
+const ProfessionFilter: React.FC = () => {
+  // const professionDataState = useSelector(
+  //   (state: RootState) => state.professionFilterSlice.professionFilter,
+  // );
+  const dispatch = useDispatch<TableDispatch>();
+  const handleProfession = (e: any) => {
+    dispatch(checkProfessionFilter(e));
+  };
   return (
     <div className="enum-filter">
       <p className="enum-filter__title">Profession filter</p>
       <div className="enum-filter__input">
         <Select
+          onChange={(e) => handleProfession(e)}
           className="enum-filter__select"
           classNamePrefix="enum-select"
           closeMenuOnSelect={false}
@@ -31,4 +42,4 @@ const EnumFilter: React.FC = () => {
   );
 };
 
-export default EnumFilter;
+export default ProfessionFilter;
